@@ -10,7 +10,7 @@
 <link rel="icon" href="../logo.png">
 <style>
 @font-face{font-family:'Open Sans';src:url('../fonts/OpenSans-Variable.ttf') format('truetype');font-weight:300 800;font-display:swap}
-html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:#09090b}
+html{scroll-behavior:smooth;scroll-padding-top:100px}@media (max-width:760px){body>div>header{position:static!important}}body{margin:0;background:#09090b}
 a{color:#fbbf24}a:hover{color:#fcd34d}
 svg.ic{width:22px;height:22px;flex-shrink:0}
 </style>
@@ -499,6 +499,15 @@ svg.ic{width:22px;height:22px;flex-shrink:0}
         </a>
         <p style="margin: 0; font-size: 13px; color: #a1a1aa">Bij de eerste installatie vraagt Android of apps uit deze bron zijn toegestaan.</p>
       </div>
+      <div id="dispo" style="border-top: 1px solid #3f3f46; padding: 36px 32px 44px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
+        <h3 style="margin: 0; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.2; font-weight: 800; color: #ffffff">GravioLOG Public Dispo voor de pc</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #d4d4d8; max-width: 560px">Voor kantoor: opdrachten op de pc aanmaken en via WhatsApp naar de chauffeurstelefoon sturen. Geen download nodig – Dispo draait in de browser op Windows en Mac (Chrome, Edge, Firefox, Safari).</p>
+        <a href="https://sevens7ch-tech.github.io/Gravio-Public-Dispo/dispo/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 14px; background: #27272a; border: 1px solid #52525b; color: #ffffff; font-size: 16px; font-weight: 800; text-decoration: none">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+          Dispo openen in de browser
+        </a>
+        <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #a1a1aa; max-width: 520px">Tip: in Chrome of Edge via Menu ⋮ → ‘Casten, opslaan en delen’ → ‘Pagina installeren als app’ krijgt Dispo een eigen icoon op het bureaublad.</p>
+      </div>
     </div>
   </section>
 
@@ -528,6 +537,14 @@ fetch('https://raw.githubusercontent.com/sevens7ch-tech/Gravio-Updates/main/grav
     if (u.version) document.getElementById('apk-version').textContent = 'Huidige versie ' + u.version + (u.build ? ' (Build ' + u.build + ')' : '');
   })
   .catch(function () { /* Link bleibt auf der Release-Übersicht von GravioLOG Public */ });
+</script>
+<script>
+// Sprungziele (Funktionen, Anleitung …) beginnen unter der Kopfzeile – ihre Höhe hängt von der Bildschirmbreite ab
+(function () {
+  var h = document.querySelector('header');
+  function set() { if (h) document.documentElement.style.scrollPaddingTop = (getComputedStyle(h).position === 'sticky' ? h.getBoundingClientRect().height : 0) + 16 + 'px'; }
+  set(); window.addEventListener('resize', set); window.addEventListener('load', set);
+})();
 </script>
 </body>
 </html>
