@@ -67,7 +67,7 @@ def build(lang):
     # relative Pfade eine Ebene höher
     for a, b in [('src="logo.png"', 'src="../logo.png"'), ('href="logo.png"', 'href="../logo.png"'),
                  ('href="impressum.html"', 'href="../impressum.html"'), ('href="datenschutz.html"', 'href="../datenschutz.html"'),
-                 ('href="handbuch/', 'href="../handbuch/'), ('href="tools/', 'href="../tools/'), ("url('fonts/", "url('../fonts/")]:
+                 ('href="handbuch/', 'href="../handbuch/'), ("url('fonts/", "url('../fonts/")]:
         h = h.replace(a, b)
     if missing:
         sys.exit(f'{lang}: nicht gefunden: {missing}')
