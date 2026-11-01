@@ -8,7 +8,7 @@ here = os.path.dirname(os.path.abspath(__file__)); root = os.path.dirname(here)
 sys.path.insert(0, here)
 from texte import L, T
 
-BASE = 'https://sevens7ch-tech.github.io/GravioLOG/'
+BASE = 'https://sevens7ch-tech.github.io/GravioLog-Public/'
 LANGS = ['de'] + L
 NAMES = {'de': 'Deutsch', 'en': 'English', 'it': 'Italiano', 'nl': 'Nederlands', 'fr': 'Français', 'es': 'Español'}
 src = open(os.path.join(here, 'seite.de.html'), encoding='utf-8').read()
