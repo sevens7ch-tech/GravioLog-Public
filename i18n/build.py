@@ -63,7 +63,8 @@ def build(lang):
         h, k = re.subn(r'((?:alt|aria-label|title|placeholder|content)=")' + pat(de) + '"', lambda m: m.group(1) + tr + '"', h); n += k
         if not n: missing.append(de)
     # Skript: Versionsanzeige
-    h = h.replace("'Aktuelle Version ' + u.version", repr(T['Aktuelle Version'][i] + ' ') + ' + u.version')
+    if 'Aktuelle Version' in T:
+        h = h.replace("'Aktuelle Version ' + u.version", repr(T['Aktuelle Version'][i] + ' ') + ' + u.version')
     # relative Pfade eine Ebene höher
     for a, b in [('src="logo.png"', 'src="../logo.png"'), ('href="logo.png"', 'href="../logo.png"'),
                  ('href="impressum.html"', 'href="../impressum.html"'), ('href="datenschutz.html"', 'href="../datenschutz.html"'),
