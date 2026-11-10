@@ -198,19 +198,6 @@ svg.ic{width:22px;height:22px;flex-shrink:0}
     </div>
   </section>
 
-  <!-- Präsentationsvideo (Überblick) -->
-  <section id="video" style="background: #18181b; padding: 88px 24px; border-bottom: 1px solid #27272a">
-    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: center">
-      <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 18px; max-width: 560px">
-        <span style="font-size: 13px; font-weight: 800; letter-spacing: .12em; color: #fbbf24">IM VIDEO</span>
-        <h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.15; font-weight: 800; color: #ffffff">GravioLOG Public in 70 Sekunden.</h2>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #d4d4d8">Vom Ärger mit nassen Papier-Auftragsscheinen bis zur fertigen PDF per WhatsApp: So arbeiten Fahrer und Dispo mit GravioLOG Public Hand in Hand – und so passen Sie die App an Ihre Firma an.</p>
-        <span style="font-size: 14px; color: #a1a1aa">Video auf Deutsch · mit Ton</span>
-      </div>
-      <div style="width: 300px; max-width: 100%; border-radius: 30px; border: 8px solid #27272a; background: #000; overflow: hidden; box-shadow: 0 24px 50px rgba(0,0,0,.5)"><video controls playsinline preload="metadata" poster="video/graviolog-ueberblick.jpg" title="GravioLOG Public im Überblick" style="display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; background: #000"><source src="video/graviolog-ueberblick.mp4" type="video/mp4"></video></div>
-    </div>
-  </section>
-
   <!-- Warnband als Trenner -->
   <div aria-hidden="true" style="height: 14px; background: repeating-linear-gradient(135deg, #f59e0b 0 22px, #18181b 22px 44px)"></div>
 
@@ -327,14 +314,13 @@ svg.ic{width:22px;height:22px;flex-shrink:0}
   </section>
 
   <!-- Ablauf -->
-  <section id="ablauf" style="background: #18181b; padding: 88px 24px">
+  <section id="ablauf" style="background: #18181b; padding: 88px 24px 40px">
     <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
       <div style="display: flex; flex-direction: column; gap: 12px; max-width: 680px">
         <span style="font-size: 13px; font-weight: 800; letter-spacing: .12em; color: #fbbf24">SO FUNKTIONIERT’S</span>
         <h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.15; font-weight: 800; color: #ffffff">Drei Schritte statt Zettelwirtschaft.</h2>
       </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: center">
-      <div style="flex: 1 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
         <div style="border-radius: 18px; background: #27272a; border: 1px solid #3f3f46; padding: 28px; display: flex; flex-direction: column; gap: 14px">
           <span style="width: 44px; height: 44px; border-radius: 999px; background: #f59e0b; color: #09090b; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center">1</span>
           <h3 style="margin: 0; font-size: 20px; font-weight: 800; color: #ffffff">Auftrag kommt aufs Handy</h3>
@@ -351,13 +337,53 @@ svg.ic{width:22px;height:22px;flex-shrink:0}
           <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #d4d4d8">Der fertige Auftragsschein geht per WhatsApp oder E-Mail an die Dispo oder direkt an den Kunden – abrechnungsfertig, im Archiv gespeichert.</p>
         </div>
       </div>
-      <div style="flex: 0 1 240px; display: flex; flex-direction: column; align-items: center; gap: 10px">
-        <div style="width: 240px; max-width: 100%; border-radius: 30px; border: 8px solid #27272a; background: #000; overflow: hidden; box-shadow: 0 24px 50px rgba(0,0,0,.5)"><video controls playsinline preload="metadata" poster="video/graviolog-kurz.jpg" title="GravioLOG Public kurz erklärt" style="display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; background: #000"><source src="video/graviolog-kurz.mp4" type="video/mp4"></video></div>
-        <span style="font-size: 14px; color: #a1a1aa">Kurz erklärt · 17 Sekunden</span>
-      </div>
-      </div>
     </div>
   </section>
+  <!-- Videos (klein, Abspielen im kleinen Fenster) -->
+  <section id="video" style="background: #18181b; padding: 0 24px 72px">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px">
+      <h3 style="margin: 0; font-size: 18px; font-weight: 800; color: #fbbf24">Videos ansehen</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px">
+        <button type="button" class="vid-card" data-src="video/graviolog-kurz.mp4" data-title="Kurz erklärt" style="display: flex; align-items: center; gap: 14px; padding: 10px 16px 10px 10px; border-radius: 16px; background: #27272a; border: 1px solid #3f3f46; cursor: pointer; font: inherit; text-align: left; color: #f4f4f5">
+          <span style="position: relative; flex: none; width: 54px; height: 96px; border-radius: 10px; overflow: hidden; background: #000"><img src="video/graviolog-kurz.jpg" alt="" width="54" height="96" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; opacity: .8"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><span style="width: 36px; height: 36px; border-radius: 999px; background: #f59e0b; color: #09090b; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" style="width: 22px; height: 22px; margin-left: 3px" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"></path></svg></span></span></span>
+          <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><strong style="font-size: 16px; color: #ffffff">Kurz erklärt</strong><span style="font-size: 13px; color: #a1a1aa">0:17 Min.</span></span>
+        </button>
+        <button type="button" class="vid-card" data-src="video/graviolog-ueberblick.mp4" data-title="GravioLOG Public im Überblick" style="display: flex; align-items: center; gap: 14px; padding: 10px 16px 10px 10px; border-radius: 16px; background: #27272a; border: 1px solid #3f3f46; cursor: pointer; font: inherit; text-align: left; color: #f4f4f5">
+          <span style="position: relative; flex: none; width: 54px; height: 96px; border-radius: 10px; overflow: hidden; background: #000"><img src="video/graviolog-ueberblick.jpg" alt="" width="54" height="96" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; opacity: .8"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><span style="width: 36px; height: 36px; border-radius: 999px; background: #f59e0b; color: #09090b; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" style="width: 22px; height: 22px; margin-left: 3px" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"></path></svg></span></span></span>
+          <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><strong style="font-size: 16px; color: #ffffff">GravioLOG Public im Überblick</strong><span style="font-size: 13px; color: #a1a1aa">1:09 Min.</span></span>
+        </button>
+        <button type="button" class="vid-card" data-src="video/graviolog-bedienung.mp4" data-title="Bedienung live in der App" style="display: flex; align-items: center; gap: 14px; padding: 10px 16px 10px 10px; border-radius: 16px; background: #27272a; border: 1px solid #3f3f46; cursor: pointer; font: inherit; text-align: left; color: #f4f4f5">
+          <span style="position: relative; flex: none; width: 54px; height: 96px; border-radius: 10px; overflow: hidden; background: #000"><img src="video/graviolog-bedienung.jpg" alt="" width="54" height="96" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; opacity: .8"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><span style="width: 36px; height: 36px; border-radius: 999px; background: #f59e0b; color: #09090b; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" style="width: 22px; height: 22px; margin-left: 3px" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"></path></svg></span></span></span>
+          <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><strong style="font-size: 16px; color: #ffffff">Bedienung live in der App</strong><span style="font-size: 13px; color: #a1a1aa">4:31 Min. · Auftrag, Leistungen, Fotos, Abrechnung, Unterschrift, Arbeitszeit</span></span>
+        </button>
+      </div>
+      <span style="font-size: 13px; color: #a1a1aa">Videos auf Deutsch · zum Abspielen antippen</span>
+    </div>
+  </section>
+  <div id="vid-modal" role="dialog" aria-modal="true" aria-label="Video" style="position: fixed; inset: 0; z-index: 2147483000; background: rgba(0,0,0,.8); display: none; font-family: 'Open Sans', system-ui, sans-serif; align-items: center; justify-content: center; padding: 16px">
+    <div style="position: relative; width: min(340px, 100%); display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><strong id="vid-title" style="font-size: 15px; color: #ffffff"></strong><button type="button" id="vid-close" aria-label="Schließen" style="width: 40px; height: 40px; border-radius: 999px; border: 0; background: #27272a; color: #ffffff; font-size: 22px; cursor: pointer">×</button></div>
+      <video id="vid-player" controls playsinline preload="none" style="display: block; width: 100%; max-height: calc(100vh - 90px); aspect-ratio: 9 / 16; border-radius: 16px; background: #000"></video>
+    </div>
+  </div>
+<script>
+(function () {
+  var m = document.getElementById('vid-modal'), v = document.getElementById('vid-player'), t = document.getElementById('vid-title');
+  if (!m) return;
+  document.body.appendChild(m);
+  function close() { v.pause(); v.removeAttribute('src'); v.load(); m.style.display = 'none'; }
+  document.querySelectorAll('.vid-card').forEach(function (c) {
+    c.addEventListener('click', function () {
+      v.src = c.getAttribute('data-src'); v.poster = c.querySelector('img').src;
+      t.textContent = c.querySelector('strong').textContent; m.style.display = 'flex';
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+  });
+  document.getElementById('vid-close').addEventListener('click', close);
+  m.addEventListener('click', function (e) { if (e.target === m) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && m.style.display === 'flex') close(); });
+})();
+</script>
 
   <!-- Tour-Archiv -->
   <section id="archiv" style="background: #ffffff; color: #18181b; padding: 88px 24px">
