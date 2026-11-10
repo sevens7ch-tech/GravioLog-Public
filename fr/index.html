@@ -465,10 +465,59 @@ svg.ic{width:22px;height:22px;flex-shrink:0}
           <div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 16px; color: #09090b">Recevoir la clé de licence</strong><span style="font-size: 14px; line-height: 1.55; color: #52525b">Après réception du paiement, vous recevez par e-mail une clé de licence pour tous les appareils commandés – saisissez-la sur chaque téléphone, c’est fait. La même clé sert aussi à vous connecter à Dispo.</span></div>
         </div>
         </div>
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; padding: 16px 18px; border-radius: 14px; background: #ffffff; border: 1px solid #e4e4e7">
-          <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&amp;business=Christian_Haake%40mail.de&amp;item_name=GravioLOG%20Public%20Jahreslizenz&amp;currency_code=EUR&amp;no_shipping=1" target="_blank" rel="noopener" title="Mit PayPal bezahlen" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #ffc439; white-space: nowrap; flex: none; text-decoration: none; box-shadow: 0 2px 6px rgba(0,0,0,.12)"><span style="font-size: 15px; font-weight: 700; color: #111827; white-space: nowrap">Payer avec</span><svg viewBox="0 0 124 33" style="height: 26px; width: auto; display: block" role="img" aria-label="PayPal"><path fill="#003087" d="M10.2 3h9.6c4.9 0 7.3 2.4 6.6 6.8-.8 5.3-4.4 8-9.6 8h-3.3l-1.5 9.4H6.2z"/><path fill="#009cde" d="M14.8 8.2h7.6c3.6 0 5.3 1.9 4.8 5.4-.7 4.3-3.7 6.5-7.8 6.5h-2.6l-1.2 7.6H11z" opacity=".9"/><text x="34" y="24" font-family="Verdana, Arial, sans-serif" font-size="22" font-style="italic" font-weight="700"><tspan fill="#003087">Pay</tspan><tspan fill="#009cde">Pal</tspan></text></svg></a>
-          <span style="flex: 1 1 260px; font-size: 14px; line-height: 1.55; color: #52525b">Ouvre PayPal avec Christian_Haake@mail.de comme destinataire. Saisissez le montant de la facture et indiquez le numéro de facture en message.</span>
+        <div id="pp-box" data-tiers="1:99,3:89,10:79" style="display: flex; flex-direction: column; gap: 16px; padding: 18px; border-radius: 14px; background: #ffffff; border: 1px solid #e4e4e7">
+          <strong style="font-size: 16px; color: #09090b">Payer directement : choisissez le nombre d’appareils</strong>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
+            <button type="button" class="pp-chip" data-n="1" style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 14px; border-radius: 12px; border: 2px solid #e4e4e7; background: #fafafa; cursor: pointer; font: inherit; text-align: left"><span style="font-size: 14px; font-weight: 700; color: #3f3f46">1–2 appareils</span><span style="font-size: 20px; font-weight: 800; color: #09090b">99 €<span style="margin-left: 4px; font-size: 12px; font-weight: 600; color: #71717a">/ appareil / an</span></span></button>
+            <button type="button" class="pp-chip" data-n="3" style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 14px; border-radius: 12px; border: 2px solid #e4e4e7; background: #fafafa; cursor: pointer; font: inherit; text-align: left"><span style="font-size: 14px; font-weight: 700; color: #3f3f46">3–9 appareils</span><span style="font-size: 20px; font-weight: 800; color: #09090b">89 €<span style="margin-left: 4px; font-size: 12px; font-weight: 600; color: #71717a">/ appareil / an</span></span></button>
+            <button type="button" class="pp-chip" data-n="10" style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 14px; border-radius: 12px; border: 2px solid #e4e4e7; background: #fafafa; cursor: pointer; font: inherit; text-align: left"><span style="font-size: 14px; font-weight: 700; color: #3f3f46">à partir de 10 appareils</span><span style="font-size: 20px; font-weight: 800; color: #09090b">79 €<span style="margin-left: 4px; font-size: 12px; font-weight: 600; color: #71717a">/ appareil / an</span></span></button>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <button type="button" id="pp-minus" aria-label="Weniger" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #d4d4d8; background: #ffffff; font-size: 22px; font-weight: 700; color: #18181b; cursor: pointer">−</button>
+              <input id="pp-n" type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Anzahl der Geräte" style="width: 72px; height: 44px; border-radius: 12px; border: 1px solid #d4d4d8; text-align: center; font: inherit; font-size: 18px; font-weight: 700">
+              <button type="button" id="pp-plus" aria-label="Mehr" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #d4d4d8; background: #ffffff; font-size: 22px; font-weight: 700; color: #18181b; cursor: pointer">+</button>
+              <span id="pp-unit" style="font-size: 15px; color: #52525b">appareil</span>
+            </div>
+            <div style="font-size: 15px; color: #52525b"><span id="pp-calc"></span> = <strong id="pp-sum" style="font-size: 22px; color: #09090b"></strong> <span>par an</span></div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px">
+            <a id="pp-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&amp;business=Christian_Haake%40mail.de&amp;item_name=GravioLOG%20Public%20Jahreslizenz&amp;currency_code=EUR&amp;no_shipping=1" target="_blank" rel="noopener" title="Mit PayPal bezahlen" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 20px; border-radius: 999px; background: #ffc439; white-space: nowrap; max-width: 100%; box-sizing: border-box; text-decoration: none; box-shadow: 0 2px 6px rgba(0,0,0,.12)"><span style="font-size: 15px; font-weight: 700; color: #111827; white-space: nowrap">Payer avec</span><svg viewBox="0 0 124 33" style="height: 26px; width: auto; display: block" role="img" aria-label="PayPal"><path fill="#003087" d="M10.2 3h9.6c4.9 0 7.3 2.4 6.6 6.8-.8 5.3-4.4 8-9.6 8h-3.3l-1.5 9.4H6.2z"/><path fill="#009cde" d="M14.8 8.2h7.6c3.6 0 5.3 1.9 4.8 5.4-.7 4.3-3.7 6.5-7.8 6.5h-2.6l-1.2 7.6H11z" opacity=".9"/><text x="34" y="24" font-family="Verdana, Arial, sans-serif" font-size="22" font-style="italic" font-weight="700"><tspan fill="#003087">Pay</tspan><tspan fill="#009cde">Pal</tspan></text></svg></a>
+            <span style="flex: 1 1 260px; font-size: 14px; line-height: 1.55; color: #52525b">Ouvre PayPal avec Christian_Haake@mail.de comme destinataire et le montant choisi. Demandez ensuite la clé de licence par e-mail – avec le nom de l’entreprise et l’adresse de facturation ; la facture arrive avec la clé.</span>
+          </div>
+          <span id="pp-words" hidden><span id="pp-w1">appareil</span><span id="pp-wn">appareils</span><span id="pp-item">GravioLOG Public licence annuelle</span></span>
         </div>
+<script>
+(function () {
+  var box = document.getElementById('pp-box'); if (!box) return;
+  var tiers = box.getAttribute('data-tiers').split(',').map(function (t) { var a = t.split(':'); return { n: +a[0], p: +a[1] }; });
+  var inp = document.getElementById('pp-n'), lang = document.documentElement.lang || 'de';
+  var w = function (id) { return document.getElementById(id).textContent; };
+  var fmt = function (v) { return v.toLocaleString(lang, { maximumFractionDigits: 0 }) + ' €'; };
+  function price(n) { var p = tiers[0].p; tiers.forEach(function (t) { if (n >= t.n) p = t.p; }); return p; }
+  function upd() {
+    var n = Math.max(1, Math.min(999, parseInt(inp.value, 10) || 1)); inp.value = n;
+    var p = price(n), sum = n * p;
+    document.getElementById('pp-unit').textContent = n === 1 ? w('pp-w1') : w('pp-wn');
+    document.getElementById('pp-calc').textContent = n + ' × ' + fmt(p);
+    document.getElementById('pp-sum').textContent = fmt(sum);
+    box.querySelectorAll('.pp-chip').forEach(function (c) {
+      var on = price(+c.getAttribute('data-n')) === p;
+      c.style.borderColor = on ? '#f59e0b' : '#e4e4e7'; c.style.background = on ? '#fffbeb' : '#fafafa';
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    document.getElementById('pp-link').href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=' + encodeURIComponent('Christian_Haake@mail.de')
+      + '&item_name=' + encodeURIComponent(w('pp-item') + ' – ' + n + ' ' + (n === 1 ? w('pp-w1') : w('pp-wn')))
+      + '&amount=' + sum.toFixed(2) + '&currency_code=EUR&no_shipping=1';
+  }
+  box.querySelectorAll('.pp-chip').forEach(function (c) { c.addEventListener('click', function () { inp.value = c.getAttribute('data-n'); upd(); }); });
+  document.getElementById('pp-minus').addEventListener('click', function () { inp.value = (parseInt(inp.value, 10) || 1) - 1; upd(); });
+  document.getElementById('pp-plus').addEventListener('click', function () { inp.value = (parseInt(inp.value, 10) || 0) + 1; upd(); });
+  inp.addEventListener('input', function () { if (inp.value !== '') upd(); });
+  inp.addEventListener('change', upd);
+  upd();
+})();
+</script>
         <p style="margin: 0; font-size: 13px; color: #71717a">Renouvellement après un an : une facture et un paiement par virement ou PayPal suffisent. La clé de licence reste la même, les téléphones se prolongent automatiquement au prochain contrôle. L’app le rappelle 30 jours avant l’échéance.</p>
       </div>
     </div>
