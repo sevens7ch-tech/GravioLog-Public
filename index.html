@@ -743,16 +743,14 @@ svg.ic{width:22px;height:22px;flex-shrink:0}
 
 </div>
 <script>
-// Neueste APK aus dem öffentlichen Repo Gravio-Updates (wird bei jedem Build automatisch aktualisiert).
-// Der Knopf zeigt ohnehin auf die feste Adresse der neuesten Version; hier kommen nur Versionsnummer und direkte Datei dazu.
-fetch('https://raw.githubusercontent.com/sevens7ch-tech/Gravio-Updates/main/gravio-public.json', { cache: 'no-store' })
+// Download-Knopf: immer die freigegebene Version (Release „gravio-public-aktuell“, ersetzt nur bei Freigabe von Hand).
+// Hier kommt nur die Versionsangabe dazu; der Link selbst wird nicht verändert.
+fetch('https://raw.githubusercontent.com/sevens7ch-tech/Gravio-Updates/main/gravio-public-webseite.json', { cache: 'no-store' })
   .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
   .then(function (u) {
-    var l = document.getElementById('apk-link');
-    if (u.apk && l) l.href = u.apk;
     if (u.version) document.getElementById('apk-version').textContent = 'Aktuelle Version ' + u.version + (u.build ? ' (Build ' + u.build + ')' : '');
   })
-  .catch(function () { /* Link bleibt auf der festen Adresse der neuesten Version (gravio-public-aktuell) */ });
+  .catch(function () { /* ohne Versionsangabe */ });
 </script>
 <script>
 // Sprungziele (Funktionen, Anleitung …) beginnen unter der Kopfzeile – ihre Höhe hängt von der Bildschirmbreite ab
