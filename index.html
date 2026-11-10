@@ -681,7 +681,7 @@ svg.ic{width:22px;height:22px;flex-shrink:0}
         <img src="logo.png" alt="GravioLOG" style="height: 72px; width: auto">
         <h2 style="margin: 0; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; font-weight: 800; color: #ffffff">GravioLOG Public für Android</h2>
         <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #d4d4d8; max-width: 520px"><span id="apk-version">Aktuelle Version</span> · Updates kommen automatisch über die App.</p>
-        <a id="apk-link" href="https://github.com/sevens7ch-tech/Gravio-Updates/releases?q=gravio-public&amp;expanded=true" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 30px; border-radius: 14px; background: #f59e0b; color: #09090b; font-size: 17px; font-weight: 800; text-decoration: none">
+        <a id="apk-link" href="https://github.com/sevens7ch-tech/Gravio-Updates/releases/download/gravio-public-aktuell/GravioLOG-Public.apk" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 30px; border-radius: 14px; background: #f59e0b; color: #09090b; font-size: 17px; font-weight: 800; text-decoration: none">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
           APK herunterladen
         </a>
@@ -743,7 +743,8 @@ svg.ic{width:22px;height:22px;flex-shrink:0}
 
 </div>
 <script>
-// Neueste APK aus dem öffentlichen Repo Gravio-Updates (wird bei jedem Build automatisch aktualisiert)
+// Neueste APK aus dem öffentlichen Repo Gravio-Updates (wird bei jedem Build automatisch aktualisiert).
+// Der Knopf zeigt ohnehin auf die feste Adresse der neuesten Version; hier kommen nur Versionsnummer und direkte Datei dazu.
 fetch('https://raw.githubusercontent.com/sevens7ch-tech/Gravio-Updates/main/gravio-public.json', { cache: 'no-store' })
   .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
   .then(function (u) {
@@ -751,7 +752,7 @@ fetch('https://raw.githubusercontent.com/sevens7ch-tech/Gravio-Updates/main/grav
     if (u.apk && l) l.href = u.apk;
     if (u.version) document.getElementById('apk-version').textContent = 'Aktuelle Version ' + u.version + (u.build ? ' (Build ' + u.build + ')' : '');
   })
-  .catch(function () { /* Link bleibt auf der Release-Übersicht von GravioLOG Public */ });
+  .catch(function () { /* Link bleibt auf der festen Adresse der neuesten Version (gravio-public-aktuell) */ });
 </script>
 <script>
 // Sprungziele (Funktionen, Anleitung …) beginnen unter der Kopfzeile – ihre Höhe hängt von der Bildschirmbreite ab
