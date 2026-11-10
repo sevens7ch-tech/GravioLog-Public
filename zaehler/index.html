@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- GravioLOG Public – Download-Zähler. © 2026 Christian Haake, alle Rechte vorbehalten. -->
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>GravioLOG Public – Downloads</title>
+<link rel="icon" href="../logo.png">
+<style>
+@font-face { font-family: 'Open Sans'; src: url('../fonts/OpenSans-Variable.ttf') format('truetype'); font-weight: 300 800; font-display: swap; }
+:root { --bg: #09090b; --card: #18181b; --line: #3f3f46; --ink: #f4f4f5; --muted: #a1a1aa; --acc: #f59e0b; --acc2: #fcd34d; --ok: #34d399; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Open Sans', system-ui, sans-serif; line-height: 1.5; }
+header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; background: linear-gradient(135deg, #dc2626 0 20%, #ffffff 20% 40%, #dc2626 40% 60%, #ffffff 60% 80%, #dc2626 80% 100%); border-bottom: 3px solid #991b1b; }
+header img { height: 44px; width: auto; filter: drop-shadow(1px 2px 2px rgba(0,0,0,.35)); display: block; }
+header button { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 0; background: #27272a; color: #fff; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+header button:disabled { opacity: .6; cursor: wait; }
+main { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; display: grid; gap: 18px; }
+h1 { margin: 0; font-size: 26px; font-weight: 800; }
+.sub { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+.kacheln { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.kachel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; display: grid; gap: 4px; }
+.kachel.haupt { border: 2px solid var(--acc); background: linear-gradient(135deg, rgba(245,158,11,.16), rgba(245,158,11,.03)); }
+.kachel .zahl { font-size: 40px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kachel.haupt .zahl { color: var(--acc2); font-size: 48px; }
+.kachel .titel { font-size: 14px; font-weight: 700; }
+.kachel .info { font-size: 12.5px; color: var(--muted); }
+.neu { font-size: 13px; font-weight: 700; color: var(--ok); }
+section { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+section h2 { margin: 0 0 10px; font-size: 17px; font-weight: 800; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 6px; border-bottom: 1px solid #27272a; white-space: nowrap; }
+th { color: var(--muted); font-weight: 600; font-size: 12.5px; }
+td.n, th.n { text-align: right; }
+.balken { height: 8px; border-radius: 4px; background: var(--acc); min-width: 2px; }
+.hinweis { font-size: 13px; color: var(--muted); }
+.hinweis b { color: var(--ink); }
+.fehler { background: #450a0a; border: 1px solid #b91c1c; color: #fecaca; border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+details summary { cursor: pointer; font-weight: 700; }
+</style>
+</head>
+<body>
+<header>
+  <img src="../logo.png" alt="GravioLOG">
+  <button type="button" id="neu-laden">Aktualisieren</button>
+</header>
+<main>
+  <div>
+    <h1>Download-Zähler</h1>
+    <p class="sub" id="stand">Wird geladen …</p>
+  </div>
+  <div id="fehler" class="fehler" hidden></div>
+
+  <div class="kacheln">
+    <div class="kachel haupt">
+      <span class="titel">Downloads über die Webseite</span>
+      <span class="zahl" id="z-web">–</span>
+      <span class="neu" id="d-web"></span>
+      <span class="info">Knopf „APK herunterladen“ (immer die neueste Version)</span>
+    </div>
+    <div class="kachel">
+      <span class="titel">App-Updates und Einzel-Downloads</span>
+      <span class="zahl" id="z-upd">–</span>
+      <span class="neu" id="d-upd"></span>
+      <span class="info">Alle Versionen zusammen – meist automatische Updates installierter Handys</span>
+    </div>
+    <div class="kachel">
+      <span class="titel">Offline-Sprachmodell geladen</span>
+      <span class="zahl" id="z-mod">–</span>
+      <span class="neu" id="d-mod"></span>
+      <span class="info">Einmalig pro Handy, das Whisper nutzt</span>
+    </div>
+  </div>
+
+  <section>
+    <h2>Neueste Versionen</h2>
+    <table>
+      <thead><tr><th>Datum</th><th>Version · Build</th><th class="n">Downloads</th><th style="width: 35%"></th></tr></thead>
+      <tbody id="versionen"><tr><td colspan="4" class="hinweis">Wird geladen …</td></tr></tbody>
+    </table>
+    <details style="margin-top: 10px"><summary id="alle-sum">Alle Versionen</summary>
+      <table><tbody id="alle"></tbody></table>
+    </details>
+  </section>
+
+  <section>
+    <h2>So lesen Sie die Zahlen</h2>
+    <p class="hinweis"><b>Webseite:</b> jeder Klick auf „APK herunterladen“, der die Datei wirklich lädt – auch eigene Tests. Der Wert wird mit jeder neuen Version weitergezählt.</p>
+    <p class="hinweis"><b>Updates:</b> GitHub zählt jeden Download einer Version. Installierte Handys holen sich jede neue Version selbst, deshalb steigt diese Zahl mit jeder Version um etwa die Zahl der aktiven Handys. Wie viele verschiedene Personen das sind, zeigt GitHub nicht.</p>
+    <p class="hinweis"><b>Grün „+ …“</b> zeigt, was seit Ihrem letzten Besuch dieser Seite in diesem Browser dazugekommen ist.</p>
+    <p class="hinweis">Quelle: öffentliche Zahlen von GitHub (Gravio-Updates). Sie können ein paar Minuten verzögert sein. Diese Seite ist nicht verlinkt und für Suchmaschinen gesperrt.</p>
+  </section>
+</main>
+<script>
+(function () {
+  var OWNER = 'sevens7ch-tech', REPO = 'Gravio-Updates';
+  var API = 'https://api.github.com/repos/' + OWNER + '/' + REPO;
+  var RAW = 'https://raw.githubusercontent.com/' + OWNER + '/' + REPO + '/main/';
+  var KEY = 'graviolog_zaehler_v1';
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (n) { return n.toLocaleString('de-DE'); };
+  var datum = function (s) { try { return new Date(s).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }); } catch (e) { return ''; } };
+  function letzter() { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }
+  function merken(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* ohne Speicher */ } }
+
+  async function alleReleases() {
+    var out = [];
+    for (var p = 1; p <= 20; p++) {
+      var r = await fetch(API + '/releases?per_page=100&page=' + p, { headers: { Accept: 'application/vnd.github+json' }, cache: 'no-store' });
+      if (r.status === 403 || r.status === 429) throw new Error('GitHub lässt gerade keine weiteren Abfragen zu (Limit 60 pro Stunde). Bitte später erneut aktualisieren.');
+      if (!r.ok) throw new Error('GitHub antwortet nicht (' + r.status + ').');
+      var page = await r.json();
+      out = out.concat(page);
+      if (page.length < 100) break;
+    }
+    return out;
+  }
+  async function vorher() {
+    try {
+      var r = await fetch(RAW + 'gravio-public-downloads.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return 0;
+      var j = await r.json();
+      return +j.webseite_vorher || 0;
+    } catch (e) { return 0; }
+  }
+  function delta(id, jetzt, alt) {
+    var el = $(id);
+    el.textContent = (alt != null && jetzt > alt) ? '+ ' + fmt(jetzt - alt) + ' seit dem letzten Besuch' : '';
+  }
+  async function laden() {
+    var btn = $('neu-laden'); btn.disabled = true; $('fehler').hidden = true;
+    try {
+      var res = await Promise.all([alleReleases(), vorher()]);
+      var rels = res[0], webVorher = res[1];
+      var web = webVorher, upd = 0, mod = 0, versionen = [];
+      rels.forEach(function (r) {
+        (r.assets || []).forEach(function (a) {
+          if (r.tag_name === 'gravio-public-aktuell') { if (a.name === 'GravioLOG-Public.apk') web += a.download_count; }
+          else if (r.tag_name.indexOf('sprachmodell') === 0) mod += a.download_count;
+          else if (r.tag_name.indexOf('gravio-public-') === 0 && /\.apk$/.test(a.name)) {
+            upd += a.download_count;
+            var m = r.tag_name.match(/gravio-public-(.+)-build(\d+)/);
+            versionen.push({ d: r.published_at || r.created_at, v: m ? m[1] + ' · ' + m[2] : r.tag_name, n: a.download_count });
+          }
+        });
+      });
+      versionen.sort(function (a, b) { return a.d < b.d ? 1 : -1; });
+      var alt = letzter();
+      $('z-web').textContent = fmt(web); $('z-upd').textContent = fmt(upd); $('z-mod').textContent = fmt(mod);
+      delta('d-web', web, alt && alt.web); delta('d-upd', upd, alt && alt.upd); delta('d-mod', mod, alt && alt.mod);
+      var max = Math.max.apply(null, versionen.map(function (x) { return x.n; }).concat([1]));
+      var zeile = function (x) { return '<tr><td>' + datum(x.d) + '</td><td>' + x.v + '</td><td class="n">' + fmt(x.n) + '</td><td><div class="balken" style="width:' + Math.round(100 * x.n / max) + '%"></div></td></tr>'; };
+      $('versionen').innerHTML = versionen.slice(0, 8).map(zeile).join('') || '<tr><td colspan="4" class="hinweis">Noch keine Versionen.</td></tr>';
+      $('alle').innerHTML = versionen.map(zeile).join('');
+      $('alle-sum').textContent = 'Alle Versionen (' + versionen.length + ')';
+      $('stand').textContent = 'Stand: ' + new Date().toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' }) + ' · GravioLOG Public';
+      merken({ web: web, upd: upd, mod: mod, t: Date.now() });
+    } catch (e) {
+      $('fehler').textContent = e.message || 'Die Zahlen konnten nicht geladen werden.';
+      $('fehler').hidden = false;
+      $('stand').textContent = 'Nicht aktuell';
+    } finally { btn.disabled = false; }
+  }
+  $('neu-laden').addEventListener('click', laden);
+  laden();
+})();
+</script>
+</body>
+</html>
